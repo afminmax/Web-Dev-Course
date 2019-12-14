@@ -4,6 +4,16 @@ body {
 h1 {
   margin-top: 0;
 }
-div {
+.top {
   background-color: #FF8080;
+}
+.middle {
+  background-color: red;
+  height: 200px;
+  width: 200px;
+}
+.bottom {
+  background-color: blue;
+  height: 200px;
+  width: 200px;
 }
