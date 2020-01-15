@@ -1,12 +1,9 @@
 /*font-family: 'Ubuntu', sans-serif;
 font-family: 'Titillium Web', sans-serif;*/
-
 #title {
   background-color: #ff4c68;
   color: white;
 }
-
-
 
 body {
   font-family: 'Montserrat';
@@ -82,4 +79,41 @@ p {
 
 .feature-icon:hover {
   color: #ff4c68;
+}
+
+/* Testimonials Section */
+#testimonials {
+
+  text-align: center;
+  background-color: #EF8172;
+  image: .25%;
+  color: #fff;
+}
+
+.testimonial-text {
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.testimonial-img {
+  max-width: 50%;
+  height: auto;
+  border-radius: 100%;
+  margin: 20px;
+}
+
+.carousel-item {
+  padding: 7% 15%;
+}
+
+/* Press Section */
+#press {
+  background-color: #EF8172;
+  text-align: center;
+  padding-bottom: 3%;
+}
+
+.press-logo {
+  max-width: 15%;
+  margin: 20px 20px 50px;
 }
