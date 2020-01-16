@@ -135,8 +135,8 @@ p {
 
 @media (max-width: 900px) {
   .title-image{
-    position: static;
-    transform: rotate(0);
+  position: static;
+  transform: rotate(0);
   }
 
   #title {
@@ -146,7 +146,25 @@ p {
 
 /* CTA Section */
 #cta {
-  background-color: #EF8172;
+  padding-top: 5%;
+  padding-left: 10%;
+  padding-right: 10%;
+  background-color: #ff4c68;
   text-align: center;
   padding-bottom: 3%;
+  color: white;
+}
+
+.cta-heading {
+  font-size: 3rem;
+}
+/* Footer Section */
+#footer {
+  padding-top: 5%;
+  padding-bottom: 2%;
+  text-align: center;
+}
+
+.social-icon {
+  margin: 20px 10px;
 }
