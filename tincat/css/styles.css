@@ -132,3 +132,21 @@ p {
 .pricing-column {
   padding: 3% 2%;
 }
+
+@media (max-width: 900px) {
+  .title-image{
+    position: static;
+    transform: rotate(0);
+  }
+
+  #title {
+    text-align: center;
+  }
+}
+
+/* CTA Section */
+#cta {
+  background-color: #EF8172;
+  text-align: center;
+  padding-bottom: 3%;
+}
