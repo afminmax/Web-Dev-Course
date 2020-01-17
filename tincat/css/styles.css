@@ -7,22 +7,35 @@ font-family: 'Titillium Web', sans-serif;*/
 
 body {
   font-family: 'Montserrat';
+  text-align: center;
+}
+
+h1, h2, h3, h4,  h5, h6 {
+  font-family: 'Montserrat';
 }
 
 h1 {
-  font-family: 'Montserrat';
   font-weight: 900;
   font-size: 3.5rem;
   line-height: 1.5;
 }
 
 h3 {
-  font-family: 'Montserrat';
   font-weight: 900;
 }
 
 p {
   color: #8f8f8f;
+}
+
+Sections
+.colored-section {
+  background-color: #ff4c68;
+
+}
+
+.white-section {
+  background-color: white;
 }
 
 /* Title Section*/
@@ -67,13 +80,11 @@ p {
 /* Features Section */
 #features {
   padding: 7% 15%;
-  background-color: #fff;
   position: relative;
 
 }
 
 .feature-box {
-  text-align: center;
   padding: 5%;
 }
 
@@ -88,11 +99,8 @@ p {
 
 /* Testimonials Section */
 #testimonials {
-
-  text-align: center;
   background-color: #EF8172;
   image: .25%;
-  color: #fff;
 }
 
 .testimonial-text {
@@ -114,7 +122,6 @@ p {
 /* Press Section */
 #press {
   background-color: #EF8172;
-  text-align: center;
   padding-bottom: 3%;
 }
 
@@ -126,7 +133,6 @@ p {
 /* Pricing Section */
 #pricing {
   padding: 100px;
-  text-align: center;
 }
 
 .pricing-column {
@@ -137,10 +143,10 @@ p {
   .title-image{
   position: static;
   transform: rotate(0);
+  text-align: center;
   }
 
   #title {
-    text-align: center;
   }
 }
 
@@ -150,7 +156,6 @@ p {
   padding-left: 10%;
   padding-right: 10%;
   background-color: #ff4c68;
-  text-align: center;
   padding-bottom: 3%;
   color: white;
 }
@@ -162,7 +167,6 @@ p {
 #footer {
   padding-top: 5%;
   padding-bottom: 2%;
-  text-align: center;
 }
 
 .social-icon {
