@@ -8,6 +8,7 @@ buttonCollectionArray.forEach(function(item) {
     var buttonInnerHTML = this.innerHTML; //note: 'this' used to capture the specific key press
     letter = buttonInnerHTML;
     playAudio(letter);
+    buttonAnimation(letter);
   });
 });
 
@@ -15,6 +16,7 @@ document.addEventListener('keydown', function(event) {
   //   alert(event.key + ' was pressed');
   letter = event.key;
   playAudio(letter);
+  buttonAnimation(letter);
 });
 
 function playAudio(letter) {
@@ -44,4 +46,12 @@ function playAudio(letter) {
     default:
       console.log(letter);
   }
+}
+
+function buttonAnimation(letter) {
+  var activeButton = document.querySelector('.' + letter);
+  activeButton.classList.add('pressed');
+  setTimeout(function() {
+    activeButton.classList.remove('pressed');
+  }, 100);
 }
