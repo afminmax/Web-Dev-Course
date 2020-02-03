@@ -58,7 +58,7 @@ $('h1').on('mouseover', function() {
 //   $('img.aniprise').fadeToggle();
 // });
 
-// jquery slide something
+// jquery slide something  (REF W3 SCHOOLS JQUERY EFFECT METHODS)
 $('button.ncc1701').on('click', function() {
   $('img.statiprise')
     .animate({ opacity: 0.5 })
