@@ -1,9 +1,9 @@
 $('h1').text('jQuery');
 
 // manipulate text:
-$('button').text('click me!');
+// $('button').text('click me!');
 
-$('button').html('<em>click me!</em>');
+// $('button').html('<em>click me!</em>');
 
 // manipulate attributes:
 console.log($('img').attr('src')); // gets the name of the image file being used
@@ -37,4 +37,31 @@ $('input').keypress(function(e) {
 // jquery more generic event listener, change color to red on mouse over (MDN DOM events is the reference)
 $('h1').on('mouseover', function() {
   $('h1').css('color', 'red');
+});
+
+// adding a new button element
+// $('h1').before('<button>mew mew!</button>');
+// $('h1').after('<button>pew pew!</button>');
+// $('h1').prepend('<button>few!few!</button>');
+// $('h1').append('<button>coo coo!</button>');
+
+//removing buttons
+// $('button').remove();
+
+// jquery simple animations - hide something
+// $('img').click(function() {
+//   $('img').hide();
+// });
+
+// jquery toggle something
+// $('button').on('click', function() {
+//   $('img.aniprise').fadeToggle();
+// });
+
+// jquery slide something
+$('button.ncc1701').on('click', function() {
+  $('img.statiprise')
+    .animate({ opacity: 0.5 })
+    .slideToggle()
+    .animate({ opacity: 1.0 });
 });

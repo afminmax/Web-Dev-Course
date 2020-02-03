@@ -1,6 +1,7 @@
 body {
   background-color: black;
   color: aquamarine;
+  ima
 }
 
 .big-title {
@@ -15,4 +16,12 @@ body {
 
 .jump-link {
   color: whitesmoke;
+}
+
+.aniprise {
+  width: 50%
+}
+
+.statiprise {
+  width: 50%
 }
