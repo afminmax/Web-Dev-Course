@@ -4,6 +4,16 @@ buttonColors = ['red', 'blue', 'green', 'yellow'];
 var randomChosenColor = '';
 var level = 0;
 
+// key event handler - starts the game
+$('body').keypress(function(e) {
+  color = nextSequence();
+  console.log('step1: ' + color);
+  $('h1').text('Level 0');
+});
+// $('body').keypress(function(e) {
+//   $('body').off('keypress');
+// });
+
 // function to play audio of the button
 function playAudio(color) {
   switch (color) {
@@ -19,6 +29,9 @@ function playAudio(color) {
     case 'yellow':
       var yellow = new Audio('sounds/yellow.mp3');
       yellow.play();
+    case 'wrong':
+      var wrong = new Audio('sounds/wrong.mp3');
+      wrong.play();
       break;
     default:
     // console.log(letter);
@@ -30,16 +43,20 @@ function nextSequence() {
   var randomNumber = Math.floor(Math.random() * 4);
   var randomChosenColor = buttonColors[randomNumber];
   gamePattern.push(randomChosenColor);
-  level = level + 1;
+  playAudio(randomChosenColor);
+  animatePress(randomChosenColor);
+  flashButton(randomChosenColor);
   console.log(
     'next random color: ' + randomChosenColor + ' and level: ' + level
   );
+  level = level + 1;
   return randomChosenColor;
 }
 
 // function to flash a button
 function flashButton(color) {
   $('#' + color)
+    .fadeIn(100)
     .fadeOut(100)
     .fadeIn(100);
 }
@@ -53,27 +70,50 @@ function animatePress(color) {
   }, 100);
 }
 
-// function to check answer
-function checkAnswer() {
-  if (JSON.stringify(userClickedPattern) === JSON.stringify(gamePattern)) {
-    console.log('correct!, next round!');
-  } else {
-    console.log('game over');
-    //reset level
-    //reset both arrays
-    //set header back to original
-  }
+// function to restart
+function startOver() {
+  userClickedPattern = [];
+  gamePattern = [];
+  level = 0;
+  // $('h1').text('Press a Key to Start');
+  // $('body').keypress(function() {
+
+  // color = '';
+  // nextSequence();
+  // // console.log('step1: ' + color);
+  // $('h1').text('Level 0');
 }
 
-// key event handler - starts the game
-$('body').keypress(function(e) {
-  color = nextSequence();
-  console.log('step1: ' + color);
-  animatePress(color);
-  playAudio(color);
-  $('h1').text('Level 0');
-  console.log('game pattern: ' + gamePattern);
-});
+// function to check answer
+function checkAnswer() {
+  if (userClickedPattern.length === gamePattern.length) {
+    console.log('arrays are equal... checking now...');
+    console.log('game pattern length: ' + gamePattern.length);
+    console.log('user pattern length: ' + userClickedPattern.length);
+    if (JSON.stringify(userClickedPattern) === JSON.stringify(gamePattern)) {
+      console.log('correct!, next round!');
+      userClickedPattern = [];
+      $('h1').text('Level ' + level);
+      setTimeout(function() {
+        nextSequence();
+      }, 1000);
+    } else {
+      console.log('game over');
+      $('h1').text('Game Over!');
+      color = 'wrong';
+      playAudio(color);
+      $('body').addClass('game-over');
+      setTimeout(function() {
+        $('body').removeClass('game-over');
+      }, 200);
+      $('h1').text('Press Any Key to Restart');
+      // $('body').keypress(function() {
+      //   $('h1').text('Press a Key to Restart');
+      //   startOver();
+      // });
+    }
+  }
+}
 
 // button click via mouse handler - continues the game
 $('.container .row')
@@ -81,17 +121,8 @@ $('.container .row')
   .click(function(e) {
     var userChosenColor = $(this).attr('id');
     console.log('user clicked: ' + userChosenColor);
-    playAudio(userChosenColor);
+    // playAudio(userChosenColor);
     animatePress(userChosenColor);
     userClickedPattern.push(userChosenColor);
-    console.log('user pattern: ' + userClickedPattern);
-    $('h1').text('Level ' + level);
     checkAnswer();
-    nextSequence();
   });
-
-// color = nextSequence();
-// invokeAV(color);
-// console.log(color);
-
-// $('#green').css('background-color', 'purple');
