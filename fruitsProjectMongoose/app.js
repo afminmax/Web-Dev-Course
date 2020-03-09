@@ -59,34 +59,54 @@ const Person = mongoose.model('Person', peopleSchema); //Note: name the collecti
 // ------------------- PEOPLE EXAMPLE END -------------------------- //
 
 // ------------------- ADDING MANY BEGIN -------------------------- //
-const Luke = new Person({
-  fname: 'Luke',
-  lname: 'Earthwalker',
-  email: 'luke@lasthope.com',
-  age: 23,
-  occupation: 'Jedi Knight'
-});
+// const Luke = new Person({
+//   fname: 'Luke',
+//   lname: 'Earthwalker',
+//   email: 'luke@lasthope.com',
+//   age: 23,
+//   occupation: 'Jedi Knight'
+// });
 
-const Leia = new Person({
-  fname: 'Leia',
-  lname: 'Earthwalker',
-  email: 'leia@lasthope.com',
-  age: 23,
-  occupation: 'Jedi Apprentice'
-});
+// const Leia = new Person({
+//   fname: 'Leia',
+//   lname: 'Earthwalker',
+//   email: 'leia@lasthope.com',
+//   age: 23,
+//   occupation: 'Jedi Apprentice'
+// });
 
-const ObiWan = new Person({
-  fname: 'ObiWan',
-  lname: 'Benobi',
-  email: 'geezer@jeditemple.com',
-  age: 75,
-  occupation: 'Jedi Master'
-});
+// const ObiWan = new Person({
+//   fname: 'ObiWan',
+//   lname: 'Benobi',
+//   email: 'geezer@jeditemple.com',
+//   age: 75,
+//   occupation: 'Jedi Master'
+// });
 
-Person.insertMany([Luke, Leia, ObiWan], function(err) {
+// Person.insertMany([Luke, Leia, ObiWan], function(err) {
+//   if (err) {
+//     console.log(err);
+//   } else {
+//     console.log('all fruits saved!');
+//   }
+// });
+
+// ------------------- ADDING MANY END -------------------------- //
+
+// ------------------- FINDING DATA  -------------------------- //
+
+peopleArray = []; //could use this too
+
+Person.find(function(err, people) {
   if (err) {
     console.log(err);
   } else {
-    console.log('all fruits saved!');
+    mongoose.connection.close();
+    peopleArray = people;
+    console.log(people);
+    console.log(peopleArray); //could use this too
+    people.forEach(function(person) {
+      console.log(person.fname + ' ' + person.lname);
+    });
   }
 });
