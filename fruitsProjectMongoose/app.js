@@ -1,31 +1,31 @@
 const mongoose = require('mongoose');
 
 // ------------------- FRUITS EXAMPLE START -------------------------- //
-// mongoose.connect('mongodb://localhost:27017/fruityDB', {
-//   useNewUrlParser: true
-// });
+mongoose.connect('mongodb://localhost:27017/fruityDB', {
+  useNewUrlParser: true
+});
 
-// // Step 1: Create schema for each document
-// const fruitSchema = new mongoose.Schema({
-//   name: String,
-//   rating: Number,
-//   review: String
-// });
+// Step 1: Create schema for each document
+const fruitSchema = new mongoose.Schema({
+  name: String,
+  rating: Number,
+  review: String
+});
 
-// // Step 2: Create a mongoose model, with a collection called fruits (first paramater) using the fruit schema in step 1.
-// const Fruit = mongoose.model('Fruit', fruitSchema); //Note: name the collection in singular!
+// Step 2: Create a mongoose model, with a collection called fruits (first paramater) using the fruit schema in step 1.
+const Fruit = mongoose.model('Fruit', fruitSchema); //Note: name the collection in singular!
 
-// // Step 3: Creating a new fruit:
-// const fruit = new Fruit({
-//   name: 'Pear',
-//   rating: 8,
-//   review: 'Anya likes Apples'
-// });
+// Step 3: Creating a new fruit:
+const Jackfruit = new Fruit({
+  name: 'Jackfruit',
+  rating: 8,
+  review: 'You are so juicy'
+});
 
-// // Step 4: Saving the fruit to the mongo db:
-// fruit.save();
+// Step 4: Saving the fruit to the mongo db:
+Jackfruit.save();
 
-// ------------------- FRUITS EXAMPLE END -------------------------- //
+// // ------------------- FRUITS EXAMPLE END -------------------------- //
 
 // ------------------- PEOPLE EXAMPLE START -------------------------- //
 mongoose.connect('mongodb://localhost:27017/gdprDB', {
@@ -41,7 +41,7 @@ mongoose.connect('mongodb://localhost:27017/gdprDB', {
 //   occupation: String
 // });
 
-// Step 1a (ALT): Create schema for each document with validation
+// Step 1a (ALT): Create schema for each document with validation and a subdocument (relationship)
 const peopleSchema = new mongoose.Schema({
   fname: {
     type: String,
@@ -54,36 +54,49 @@ const peopleSchema = new mongoose.Schema({
     min: 1,
     max: 2000
   },
-  occupation: String
+  occupation: String,
+  faveFruit: fruitSchema
 });
 
 // Step 2: Create a mongoose model, with a collection called peeople (first paramater) using the people schema in step 1.
 const Person = mongoose.model('Person', peopleSchema); //Note: name the collection in singular!
 
-// // Step 3: Creating a new person:
-// const person = new Person({
-//   fname: 'Rebel',
-//   lname: 'Sin',
-//   email: 'rs@rebelalliance.net',
-//   age: 45,
-//   occupation: 'X-Wing Pilot'
-// });
+// Step 3: Creating a new person:
+const person = new Person({
+  fname: 'Jaina',
+  lname: 'Solo',
+  email: 'jaina@nannybots.cor',
+  age: 1,
+  occupation: 'Jedi Baby',
+  faveFruit: Jackfruit
+});
 
-// // Step 4: Saving the person to the mongo db:
-// person.save();
+// Step 4: Saving the person to the mongo db:
+person.save();
 
 // Step 5: Updating the person in the mongo db:
-Person.updateOne(
-  { _id: '5e66a48d36a5672c088a1fff' },
-  { fname: 'Rheebel' },
-  function(err) {
-    if (err) {
-      console.log(err);
-    } else {
-      console.log('record updated');
-    }
-  }
-);
+// Person.updateOne(
+//   { _id: '5e66a48d36a5672c088a1fff' },
+//   { fname: 'Rheebel' },
+//   function(err) {
+//     if (err) {
+//       console.log(err);
+//     } else {
+//       console.log('record updated');
+//     }
+//   }
+// );
+
+// Step 6: Deleting a person from the mongo db:
+// Person.deleteOne({ _id: '5e66a389de9b1a240c0eb569' }, function(err) {
+//   if (err) {
+//     console.log(err);
+//   } else {
+//     console.log('record deleted');
+//   }
+// });
+
+// Step 7: Establishing a Relationship
 
 // ------------------- PEOPLE EXAMPLE END -------------------------- //
 
