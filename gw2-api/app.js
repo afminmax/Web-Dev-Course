@@ -78,3 +78,6 @@ app.get('/', function(req, res) {
 app.listen(3000, function() {
   console.log('Server is running on port 3000 ... ');
 });
+
+//need to add the special code to dynamic stuff from todolist!
+//need to add the saving of total account gold to database!
