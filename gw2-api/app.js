@@ -1,6 +1,9 @@
-// load module for api requests:
+// load modules
 const https = require('https');
+const fetch = require('node-fetch');
+const express = require('express');
 
+const app = express();
 // load module for file reading:
 const fs = require('fs');
 
@@ -10,7 +13,9 @@ const keyPath =
 const apiEndpointRoot =
   'https://api.guildwars2.com/v2/account/wallet/?access_token=';
 
-var naApiUrl = '';
+let naGold = 0;
+let euGold = 0;
+let goldSum = 0;
 
 fs.readFile(keyPath + 'key-na.txt', 'utf-8', (err, data) => {
   if (err) throw err;
@@ -19,24 +24,51 @@ fs.readFile(keyPath + 'key-na.txt', 'utf-8', (err, data) => {
   let url = apiEndpointRoot + data;
   //   console.log(naApiUrl);
 
-  console.log('starting api call.... ');
+  //   console.log('starting api call.... ');
 
-  https.get(url, function(apiResponse) {
-    console.log('submitting the following url: ' + url);
-    console.log('the get status response code is: ' + apiResponse.statusCode);
-    apiResponse.on('data', function(data) {
-      const accountData = JSON.parse(data);
-      console.log(accountData);
+  fetch(url)
+    .then(response => {
+      return response.json();
+    })
+    .then(data => {
+      //   console.log(data);
+      let gold = data[0].value;
+      //   console.log(gold);
+      naGold = gold;
+      goldSum = goldSum + naGold;
+      console.log('NA Gold: ' + naGold);
+      console.log('Final Gold Sum: ' + goldSum);
     });
-  });
 });
 
-// fs.readFile(keyPath + 'key-eu.txt', 'utf-8', (err, data) => {
-//   if (err) throw err;
-//   console.log('EU key: ' + data);
-//   let euKey = data;
-//   let euApiUrl = apiEndpointRoot + data;
-//   console.log(euApiUrl);
-// });
+fs.readFile(keyPath + 'key-eu.txt', 'utf-8', (err, data) => {
+  if (err) throw err;
+  //   console.log('EU key: ' + data);
+  let euKey = data;
+  let url = apiEndpointRoot + data;
+  //   console.log(euApiUrl);
 
-// 0.value
+  //   console.log('starting api call.... ');
+
+  fetch(url)
+    .then(response => {
+      return response.json();
+    })
+    .then(data => {
+      //   console.log(data);
+      let gold = data[0].value;
+      //   console.log(gold);
+      euGold = gold;
+      goldSum = goldSum + euGold;
+      console.log('EU Gold: ' + euGold);
+      //   console.log('Gold Sum: ' + goldSum);
+    });
+});
+
+app.get('/', function(req, res) {
+  res.sendFile(__dirname + '/index.html');
+});
+
+app.listen(3000, function() {
+  console.log('Server is running on port 3000 ... ');
+});
