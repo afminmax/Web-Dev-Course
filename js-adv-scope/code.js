@@ -84,5 +84,3 @@
 // first();
 // second();
 // console.log(name);
-
-var count = 0;
