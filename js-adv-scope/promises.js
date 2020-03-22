@@ -1,5 +1,5 @@
 let url = 'http://api.guildwars2.com/v2/commerce/prices?ids=19683,19684';
-console.log('hello');
+// console.log('hello');
 
 // // STEP 1: BRUTE FORCE -----------------------------------------------------------------------
 // this function displays the data from a fetch. functions when successful
@@ -58,7 +58,21 @@ console.log('hello');
 // STEP 6: GET SPECIFIC JSON DATA ---------------------------------------------------------
 // now lets get an actual value out of the json nest:
 fetch(url)
-  .then(response => response.json()) // first get the fulfilled response and convert it to json via the json method
-  .then(json => console.log(json)) // show the json
-  // .then(gold => console.log(json.data[0].buys.unit_price))
+  .then(anetResponse => anetResponse.json()) // first get the fulfilled response and convert it to json via the json method
+  .then(data => {
+    console.log(data);
+    gold = data[0].buys.unit_price;
+    console.log('gold: ', gold);
+  })
   .catch(err => console.log(err)); //error is console logged
+
+// // APPENDIX 1: VERBOSE FETCH
+// fetch(url)
+//   .then(anetResponse => {
+//     return anetResponse.json();
+//   })
+//   .then(data => {
+//     console.log(data);
+//     let gold = data[0].buys.unit_price;
+//     console.log('gold value: ', gold);
+//   });
