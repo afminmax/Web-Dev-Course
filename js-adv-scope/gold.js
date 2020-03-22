@@ -46,7 +46,7 @@ let randomNumber2 = () => Math.random;
 
 // -----------------------------------------------------------------------------------//
 
-// 4 - Anonymouse function
+// 4 - Anonymous function
 document.addEventListener('click', function() {
   console.log('click!');
 });
@@ -54,3 +54,21 @@ document.addEventListener('click', function() {
 document.addEventListener('click', () => console.log('click!'));
 
 // -----------------------------------------------------------------------------------//
+
+// scoped variables - works
+function getGold() {
+  console.log('first level in function');
+  let retrievedGold = parseAPI();
+  console.log('retrievedGold = ', retrievedGold);
+
+  function parseAPI() {
+    let parsedGold = 1000;
+    return parsedGold;
+  }
+  return retrievedGold;
+}
+
+let actualGold = getGold();
+console.log('actual gold = ', actualGold);
+
+let getGold2 = () => console.log('first level in function');
